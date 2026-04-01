@@ -1,2 +1,2 @@
 # master-ami
-Golden AMI
+creating golden ami
