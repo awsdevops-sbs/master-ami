@@ -37,7 +37,7 @@ pipelines:
               tasks:
                 # - exec: { command: sh, arguments: [ "-c", "rm -rf .terraform && rm -f .terraform.lock.hcl && terraform version && terraform init -upgrade -reconfigure -backend-config=env-dev/state.tfvars" ], run_if: passed }
                 - exec: { command: terraform, arguments: [ "init" ], run_if: passed }
-                - exec: { command: terraform, arguments: [ "state" , "rm" ,"aws_ami_from_instance.ami" ], run_if: passed }
+                - exec: { command: terraform, arguments: [ "state", "rm", "aws_ami_from_instance.ami" ], run_if: passed }
                 - exec: { command: terraform, arguments: [ "destroy", "-auto-approve" ], run_if: passed }
 
 
