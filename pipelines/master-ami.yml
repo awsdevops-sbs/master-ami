@@ -39,6 +39,3 @@ pipelines:
                 - exec: { command: terraform, arguments: [ "init" ], run_if: passed }
                 - exec: { command: terraform, arguments: [ "state", "rm", "aws_ami_from_instance.ami" ], run_if: passed }
                 - exec: { command: terraform, arguments: [ "destroy", "-auto-approve" ], run_if: passed }
-
-
-
