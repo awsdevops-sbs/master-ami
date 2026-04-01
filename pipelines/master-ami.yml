@@ -1,0 +1,31 @@
+format_version: 10
+pipelines:
+  Master-ami:
+    group: terraform
+    materials:
+      git-5766e3f:
+        git: https://github.com/akramibm/master-ami.git
+        shallow_clone: false
+        auto_update: true
+        branch: main
+    secure_variables:
+      TF_VAR_vault_token: AES:JCrVkqbTCywJWmdDGAplWQ==:qPchvR+7Zsg44db54/l5/Zv81Mimcg8e1BOaoym9WWA=
+    stages:
+      - Dev:
+          fetch_materials: true
+          environment_variables:
+            env: dev
+          approval:
+            type: manual
+            allow_only_on_success: false
+          jobs:
+           terraform-apply:
+             tasks:
+            # - exec: { command: sh, arguments: [ "-c", "rm -rf .terraform && rm -f .terraform.lock.hcl && terraform version && terraform init -upgrade -reconfigure -backend-config=env-dev/state.tfvars" ], run_if: passed }
+             - exec: {command: terraform, arguments: [ "init"], run_if: passed }
+             - exec: {command: terraform, arguments: [ "apply", "-auto-approve"], run_if: passed }
+
+
+
+
+
